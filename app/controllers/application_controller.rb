@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
+    include SessionsHelper
 
-
-    def hello
-        render html:"hello again"
-    end
+   # helper Webpacker::Helper
 end
