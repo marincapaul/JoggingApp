@@ -1,0 +1,17 @@
+<li id="run-<%= run.id %>">
+    <%= link_to gravatar_for(run.user, size: 50), run.user %>
+    <span class="user"><%= link_to run.user.name, run.user %></span>
+    <span class="distance">Distance: <%= run.distance %> km</span>
+    <span class="time">Moving Time: <%= run.time %> minutes</span>
+    <span class="time">Avg Pace: <%= run.get_pace %> /km</span>
+    <span class="timestamp">
+        <%= run.created_at.to_formatted_s(:long) %> 
+        <% if !current_user.nil?%>
+            <% if current_user?(run.user) || current_user.admin? %>
+                <%= link_to "delete", run, method: :delete, 
+                                                data: { confirm: "You sure?"} %>   
+                | <%= link_to "edit", edit_run_path(run) %>
+            <% end %>
+        <% end %>
+    </span>
+</li>

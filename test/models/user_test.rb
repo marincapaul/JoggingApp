@@ -74,4 +74,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
     
+  test "associated runs should be destroyed" do
+    @user.save
+    @user.runs.create!(distance: 2.3, time: 21)
+    assert_difference 'Run.count', -1 do
+      @user.destroy
+    end
+  end
 end

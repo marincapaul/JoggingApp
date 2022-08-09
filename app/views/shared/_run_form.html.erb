@@ -1,0 +1,12 @@
+<%= form_with(model: @run, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class = "field">
+        <%= f.label :distance, "Distance: " %>
+        <%= f.text_field :distance, class:"form-control" %>
+   </div>
+   <div class="field">
+        <%= f.label :time, "Time: " %>
+        <%= f.text_field :time, class:"form-control" %>
+    </div>
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

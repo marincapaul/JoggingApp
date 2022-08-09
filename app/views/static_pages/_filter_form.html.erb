@@ -1,0 +1,14 @@
+<div class="row g-3">
+<%= form_with url: home_path do |f| %>
+    <div class = "col-sm-5">
+        <%= f.label :from, "From: " %>
+        <%= f.date_field :from, class:"form-control" %>
+    </div>
+    <div class="col-sm-5">
+        <%= f.label :to, "To: " %>
+        <%= f.date_field :to, class:"form-control" %>
+    </div>
+    <%= f.submit 'Filter', class: "btn btn-primary col-sm-3" %>
+<% end %>
+
+</div>  

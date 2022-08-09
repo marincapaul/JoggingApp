@@ -6,10 +6,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root    'static_pages#home'
-  get     '/signup',  to: 'users#new'
-  get     '/login',   to: 'sessions#new'
-  post    '/login',   to: 'sessions#create'
-  delete  '/logout',   to: 'sessions#destroy'
-  resources :users
+  get     '/signup',    to: 'users#new'
+  get     '/login',     to: 'sessions#new'
+  get     '/report',    to: 'static_pages#report'
+  post    '/login',     to: 'sessions#create'
+  post    '/home',      to: 'static_pages#filter'
+  get     '/home',      to: 'static_pages#home'
+  delete  '/logout',    to: 'sessions#destroy'
+  #get     'static_pages#home',     to: redirect('/runs/:id')
 
+  resources :users 
+  resources :runs,  only: [:create, :destroy,:edit, :update, :show]
 end

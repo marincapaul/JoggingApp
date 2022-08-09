@@ -1,0 +1,15 @@
+<% provide(:title, "Report") %>
+<div class="row">
+    <aside class="col-md-4"></aside>
+    <div class="col-sm-3">
+    <ol class="runs">
+    <% @results.each do |key, value|%>
+        <li>
+        <span class="user"><%= " #{pluralize(key, "week")} ago"%></span>
+        <span class="distance">Total Distance: <%= value[:distance] %> km</span>
+        <span class="time">Average Speed: <%= value[:speed] %> minutes/km</span>
+        </li>
+    <% end %>
+    </ol>
+    </div>
+</div>

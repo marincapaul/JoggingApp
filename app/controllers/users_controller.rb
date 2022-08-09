@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :manager_user, only: [:edit, :update, :destroy]
+  #before_action :admin_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @runs = @user.runs.paginate(page: params[:page])
   end
 
   def create 
@@ -53,23 +55,17 @@ class UsersController < ApplicationController
     end
 
     # Before filters
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in first."
-        redirect_to login_url
-      end
-    end
-
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user) || current_user.manager?
+      redirect_to(root_url) unless current_user?(@user) || current_user.manager? || current_user.admin?
     end
 
     # Confirms a manager user.
-  def manager_user
-    redirect_to(root_url) unless current_user.manager?
-  end
+    def manager_user
+      redirect_to(root_url) unless current_user.manager? || current_user.admin?
+    end
+
+
   
 end
