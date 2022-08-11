@@ -10,8 +10,8 @@
     </aside>
     <div class="col-md-8">
         <% if @user.runs.any? %>
-            <h3>Runs (<%= @user.runs.count %>)</h3>
-            <%= link_to "Weekly report", report_path %>
+            <h3 id="nr_runs">Runs (<%= @user.runs.count %>)</h3>
+            <%= link_to "Weekly report", report_path(@user.id) %>
             <ol class="runs">
                 <%= render @runs %>
             </ol>

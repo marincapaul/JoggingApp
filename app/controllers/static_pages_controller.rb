@@ -6,11 +6,7 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def report
-    if logged_in?
-      @results = current_user.report
-    end
-  end
+
 
   def filter
     if logged_in?
@@ -19,7 +15,12 @@ class StaticPagesController < ApplicationController
       opt[:from] = params[:from]
       opt[:to] = params[:to]
       @feed_items = current_user.feed(opt).paginate(page: params[:page])
-      render 'home'
+      
+      respond_to do |format|
+        format.html { render 'home' }
+        format.js
+      end
+
     end
   end
 

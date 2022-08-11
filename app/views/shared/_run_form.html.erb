@@ -1,5 +1,7 @@
-<%= form_with(model: @run, local: true) do |f| %>
+<%= form_with(model: @run, local: false, id: "r_form") do |f| %>
+    <div id="div_error">
     <%= render 'shared/error_messages', object: f.object %>
+    </div>
     <div class = "field">
         <%= f.label :distance, "Distance: " %>
         <%= f.text_field :distance, class:"form-control" %>

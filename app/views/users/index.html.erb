@@ -1,8 +1,8 @@
 <% provide(:title,'All users') %>
 <h1> All users </h1>
-<%= will_paginate %>
+<%= will_paginate @users, {link_options: {'data-remote': true}, params: {action: 'index'}} %>
 <ul class="users">
     <%= render @users %>
 </ul>
 
-<%= will_paginate %>
+<%# js_will_paginate @users %>

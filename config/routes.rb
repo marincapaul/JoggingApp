@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root    'static_pages#home'
   get     '/signup',    to: 'users#new'
   get     '/login',     to: 'sessions#new'
-  get     '/report',    to: 'static_pages#report'
+  get     '/report/:id',    to: 'users#report', as: 'report'
   post    '/login',     to: 'sessions#create'
   post    '/home',      to: 'static_pages#filter'
   get     '/home',      to: 'static_pages#home'

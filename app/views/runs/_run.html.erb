@@ -8,7 +8,7 @@
         <%= run.created_at.to_formatted_s(:long) %> 
         <% if !current_user.nil?%>
             <% if current_user?(run.user) || current_user.admin? %>
-                <%= link_to "delete", run, method: :delete, 
+                <%= link_to "delete", run, method: :delete, remote: true,
                                                 data: { confirm: "You sure?"} %>   
                 | <%= link_to "edit", edit_run_path(run) %>
             <% end %>

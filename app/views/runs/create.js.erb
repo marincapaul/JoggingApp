@@ -1,0 +1,10 @@
+<% provide(:button_text, "Add entry") %>
+<% if @run.errors.any? %>
+    $("#run_form").html("<%= j(render "shared/run_form")%>");
+<% else %>
+    $("#nr_runs").html("<%= j(pluralize(current_user.runs.count, "run"))%>")
+    $("#runs").prepend("<%= escape_javascript(render @run) %>");
+    $("#alert").html("<%= j render partial: "shared/alert"%>");
+    document.getElementById("r_form").reset();
+    $("#div_error").html("<%= j(render "shared/error_messages", object: @run)%>");
+<% end %>

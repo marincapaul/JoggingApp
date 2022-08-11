@@ -43,11 +43,23 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
-    redirect_to users_url
+    #User.find(params[:id]).destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash.now[:success] = "User deleted"
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.js
+    end
   end
 
+  def report
+    if logged_in?
+      @user =User.find(params[:id])
+      @results = @user.report
+    end
+  end
+  
   private
     def user_params
       params.require(:user).permit(:name, :email, :password,

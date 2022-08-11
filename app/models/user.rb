@@ -51,18 +51,22 @@ class User < ApplicationRecord
                     time_total += run.time
                 end
             end
-            results[w] = { speed: get_speed(time_total, distance_total), distance: distance_total } 
+            results[w] = { speed: get_speed(time_total, distance_total), distance: distance_total.round(2) } 
         end
         results
     end
 
     
     def get_speed(time, distance)
-        time_s = time.to_i * 60
-        distance_m = distance.to_f * 1000
-        speed = distance_m / time_s
-        total_seconds = 1000/speed
-        minutes, seconds = total_seconds.divmod(60)
+        if(time!=0 || distance!=0)     
+            time_s = time.to_i * 60
+            distance_m = distance.to_f * 1000
+            speed = distance_m / time_s
+            total_seconds = 1000/speed
+            minutes, seconds = total_seconds.divmod(60)
+        else
+            minutes, seconds = 0, 0
+        end
         seconds = seconds.round < 10 ? "0#{seconds.round}" : "#{seconds.round}"
         "#{minutes}:#{seconds}"
       end

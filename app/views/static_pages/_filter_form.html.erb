@@ -1,5 +1,5 @@
-<div class="row g-3">
-<%= form_with url: home_path do |f| %>
+<div class="row g-3" id="filter_form" >
+<%= form_with(url: home_path, local: true) do |f| %>
     <div class = "col-sm-5">
         <%= f.label :from, "From: " %>
         <%= f.date_field :from, class:"form-control" %>
@@ -10,5 +10,4 @@
     </div>
     <%= f.submit 'Filter', class: "btn btn-primary col-sm-3" %>
 <% end %>
-
 </div>  

@@ -5,19 +5,27 @@ class RunsController < ApplicationController
     
     def create
         @run = current_user.runs.build(run_params)
-        if @run.save
-            flash[:success] = "Run created!"
-            redirect_to root_url
-        else
-            @feed_items = current_user.feed.paginate(page: params[:page])
-            render 'static_pages/home'
+        respond_to do |format|
+            if @run.save
+                flash.now[:success] = "Run created!" 
+                format.html { redirect_to root_url }
+                format.js 
+                
+            else
+                @feed_items = current_user.feed.paginate(page: params[:page])
+                format.html { render 'static_pages/home' }
+                format.js
+            end
         end
     end
 
     def destroy
         Run.find(params[:id]).destroy
-        flash[:success] = "Run deleted"
-        redirect_to request.referrer  || root_url
+        flash.now[:success] = "Run deleted"
+        respond_to do |format|
+            format.html { redirect_to request.referrer  || root_url }
+            format.js
+        end
     end
 
     def edit

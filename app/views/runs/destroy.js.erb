@@ -1,0 +1,4 @@
+$("#nr_runs").html("<%= j(pluralize(current_user.runs.count, "run"))%>");
+let delete<%= @run.id %> = document.querySelector("#run-" + <%= @run.id %>);
+delete<%= @run.id %>.remove();
+$("#alert").html("<%= j render partial: "shared/alert"%>");
