@@ -5,8 +5,8 @@ User.create!(name: "Example User",
             password_confirmation: "foobar",
             manager: true)
 
-User.create!(name: "Beluga",
-            email: "marincapaul@outlook.com",
+User.create!(name: "Admin",
+            email: "admin@admin.com",
             password: "foobar",
             password_confirmation: "foobar",
             admin: true)
